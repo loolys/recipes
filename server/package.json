@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "babel-preset-es2015": "^6.22.0",
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "mongoose": "^4.8.4",
+    "nodemon": "^1.11.0",
+    "path": "^0.12.7"
+  },
+  "name": "server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "looly",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon --exec babel-node -- ./server.js"
+  }
+}
