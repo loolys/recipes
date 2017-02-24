@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import classnames from 'classnames';
 import validateSignup from '../../validators/signup';
 import TextFieldGroup from '../common/TextFieldGroup';
 
@@ -12,7 +11,7 @@ class SignupForm extends Component {
       password: '',
       passwordConfirmation: '',
       errors: {},
-      isLoading: false
+      isLoading: false,
     };
 
     this.onChange = this.onChange.bind(this);
@@ -30,7 +29,13 @@ class SignupForm extends Component {
     const { errors, isValid } = validateSignup(this.state);
     if (isValid) {
       this.props.userSignupRequest(this.state)
-        .then(() => {},
+        .then(() => {
+          this.props.addFlashMessage({
+            type: 'succes',
+            text: 'Account created',
+          });
+          this.context.router.push('/');
+        },
           err => this.setState({ errors: err.response.data }));
     } else {
       this.setState({ errors, isLoading: false });
@@ -81,6 +86,11 @@ class SignupForm extends Component {
 
 SignupForm.propTypes = {
   userSignupRequest: React.PropTypes.func.isRequired,
+  addFlashMessage: React.PropTypes.func.isRequired,
+};
+
+SignupForm.contextTypes = {
+  router: React.PropTypes.object.isRequired,
 };
 
 export default SignupForm;
