@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import classnames from 'classnames';
+import validateSignup from '../../validators/signup';
 
 class SignupForm extends Component {
   constructor(props) {
@@ -9,26 +10,39 @@ class SignupForm extends Component {
       username: '',
       password: '',
       passwordConfirmation: '',
+      errors: {},
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+  onChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-    axios.post('/api/users', { user: this.state });
+  onSubmit(event) {
+    this.setState({ errors: {} });
+    event.preventDefault();
+
+    const { errors, isValid } = validateSignup(this.state);
+    if (isValid){
+      this.props.userSignupRequest(this.state)
+        .then(() => {},
+          err => this.setState({ errors: err.response.data }));
+    } else {
+      this.setState({ errors });
+    }
+    
   }
 
   render() {
+    const { errors } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
-        <h1>Sigup</h1>
-        <div className="form-group">
+        <h1>Sign Up</h1>
+
+        <div className={classnames('form-group', { 'has-error': errors.username })}>
           <label className="control-label">Username</label>
           <input
             value={this.state.username}
@@ -37,9 +51,10 @@ class SignupForm extends Component {
             name="username"
             className="form-control"
           />
+          { errors.username ? <span className="help-block">{errors.username}</span> : '' }
         </div>
 
-        <div className="form-group">
+        <div className={classnames('form-group', { 'has-error': errors.password })}>
           <label className="control-label">Password</label>
           <input
             value={this.state.password}
@@ -48,9 +63,10 @@ class SignupForm extends Component {
             name="password"
             className="form-control"
           />
+          { errors.password ? <span className="help-block">{errors.password}</span> : '' }
         </div>
 
-        <div className="form-group">
+        <div className={classnames('form-group', { 'has-error': errors.passwordConfirmation })}>
           <label className="control-label">Confirm Password</label>
           <input
             value={this.state.passwordConfirmation}
@@ -59,16 +75,21 @@ class SignupForm extends Component {
             name="passwordConfirmation"
             className="form-control"
           />
+          { errors.passwordConfirmation ? <span className="help-block">{errors.passwordConfirmation}</span> : '' }
         </div>
 
         <div className="form-group">
           <button className="btn btn-primary btn-lg">
-            Signup
+            Sign Up
           </button>
         </div>
       </form>
     );
   }
 }
+
+SignupForm.propTypes = {
+  userSignupRequest: React.PropTypes.func.isRequired,
+};
 
 export default SignupForm;

@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import SignupForm from './SignupForm';
 import { userSignupRequest } from '../../actions/signupActions';
+
+import SignupForm from './SignupForm';
 
 class Signup extends Component {
   render() {
     const { userSignupRequest } = this.props;
     return (
-      <Grid>
-        <Row>
-          <Col md={4} mdOffset={4}>
-            <SignupForm userSignupRequest={userSignupRequest} />
-          </Col>
-        </Row>
-      </Grid>
+      <div className="row">
+        <div className="col-md-4 col-md-offset-4">
+          <SignupForm userSignupRequest={userSignupRequest} />
+        </div>
+      </div>
     );
   }
 }
@@ -23,4 +21,4 @@ Signup.propTypes = {
   userSignupRequest: React.PropTypes.func.isRequired,
 };
 
-export default connect((state) => { return {} }, { userSignupRequest })(Signup);
+export default connect(null, { userSignupRequest })(Signup);

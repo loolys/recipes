@@ -2,8 +2,18 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const users = require('./routes/users');
+
+mongoose.Promise = global.Promise;
+const connStr = process.env.MONGODB || 'mongodb://localhost:27017/recipes-db';
+mongoose.connect(connStr);
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  console.log('connect to db');
+});
 
 const app = express();
 
