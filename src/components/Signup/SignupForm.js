@@ -31,7 +31,7 @@ class SignupForm extends Component {
       this.props.userSignupRequest(this.state)
         .then(() => {
           this.props.addFlashMessage({
-            type: 'succes',
+            type: 'success',
             text: 'Account created',
           });
           this.context.router.push('/');
