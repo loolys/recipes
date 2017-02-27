@@ -16,6 +16,9 @@ class NavigationBar extends Component {
           <LinkContainer to="/Signup">
             <NavItem>Signup</NavItem>
           </LinkContainer>
+          <LinkContainer to="/Login">
+            <NavItem>Login</NavItem>
+          </LinkContainer>
         </Nav>
       </Navbar>
     );
