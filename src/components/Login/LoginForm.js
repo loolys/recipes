@@ -24,15 +24,10 @@ class LoginForm extends Component {
     const { errors, isValid } = validateInput(this.state);
     if (isValid) {
       this.setState({ errors: {}, isLoading: true });
-      this.props.login(this.state)
-        .then(
-          () => {
-            this.context.router.push('/');
-          },
-          (err) => {
-            this.setState({ errors: err.response.errors });
-          },
-        );
+      this.props.login(this.state).then(
+        () => this.context.router.push('/'),
+        err => this.setState({ errors: err.response.data.errors, isLoading: false }),
+      );
     } else {
       this.setState({ errors });
     }
@@ -46,6 +41,8 @@ class LoginForm extends Component {
     return (
       <form onSubmit={this.onSubmit}>
         <h1>Login</h1>
+
+        { errors.form && <div className="alert alert-danger">{errors.form}</div> }
 
         <TextFieldGroup
           field="username"

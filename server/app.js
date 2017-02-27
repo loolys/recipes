@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const users = require('./routes/users');
+const auth = require('./routes/auth');
 
 mongoose.Promise = global.Promise;
 const connStr = process.env.MONGODB || 'mongodb://localhost:27017/recipes-db';
@@ -20,6 +21,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 // Setup logger
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
