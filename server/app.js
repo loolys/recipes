@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 
 const users = require('./routes/users');
 const auth = require('./routes/auth');
+const recipes = require('./routes/recipes');
 
 mongoose.Promise = global.Promise;
 const connStr = process.env.MONGODB || 'mongodb://localhost:27017/recipes-db';
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 
 app.use('/api/users', users);
 app.use('/api/auth', auth);
+app.use('/api/recipes', recipes);
 
 // Setup logger
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));

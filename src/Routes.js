@@ -5,6 +5,7 @@ import App from './components/App/App';
 import IndexPage from './components/IndexPage/IndexPage';
 import Signup from './components/Signup/Signup';
 import Login from './components/Login/Login';
+import NewRecipe from './components/NewRecipe/NewRecipe';
 
 const Routes = (props) => (
   <Router {...props}>
@@ -12,6 +13,7 @@ const Routes = (props) => (
       <IndexRoute component={IndexPage} />
       <Route path="/signup" component={Signup} />
       <Route path="/login" component={Login} />
+      <Route path="/new-recipe" component={NewRecipe} />
     </Route>
   </Router>
 );
