@@ -7,13 +7,15 @@ import Signup from './components/Signup/Signup';
 import Login from './components/Login/Login';
 import NewRecipe from './components/NewRecipe/NewRecipe';
 
+import requireAuth from './utils/requireAuth';
+
 const Routes = (props) => (
   <Router {...props}>
     <Route path="/" component={App}>
       <IndexRoute component={IndexPage} />
       <Route path="/signup" component={Signup} />
       <Route path="/login" component={Login} />
-      <Route path="/new-recipe" component={NewRecipe} />
+      <Route path="/new-recipe" component={requireAuth(NewRecipe)} />
     </Route>
   </Router>
 );
