@@ -49,7 +49,10 @@ class NewRecipeForm extends Component {
     e.preventDefault();
     const { errors, isValid } = validateInput(this.state);
     if (isValid) {
-      this.props.createRecipe(this.state);
+      this.props.createRecipe(this.state).then(
+        () => this.context.router.push('/'),
+        err => this.setState({ errors: err.response.data.errors, isLoading: false }),
+      );
     } else {
       this.setState({ errors });
     }
