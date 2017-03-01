@@ -192,7 +192,7 @@ NewRecipeForm.propTypes = {
   createRecipe: React.PropTypes.func.isRequired,
 };
 
-NewRecipeForm.propTypes = {
+NewRecipeForm.contextTypes = {
   router: React.PropTypes.object.isRequired,
 };
 

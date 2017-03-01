@@ -34,4 +34,17 @@ router.post('/', authenticate, (req, res) => {
   }
 });
 
+router.get('/', (req, res) => {
+  const query = RecipeModel.where({ _id: '58b6fead00484e187cf9bdf2' });
+ 
+  query.findOne((err, found) => {
+    if (err) throw err;
+    if (found) {
+      res.json({ found });
+    } else {
+      res.status(500).json({ error: 'not found' });
+    }
+  });
+});
+
 module.exports = router;

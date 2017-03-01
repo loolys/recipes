@@ -5,3 +5,9 @@ export function createRecipe(recipe) {
     return axios.post('/api/recipes', recipe);
   };
 }
+
+export function getFeatured() {
+  return dispatch => {
+    return axios.get('/api/recipes');
+  };
+}

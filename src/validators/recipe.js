@@ -1,5 +1,6 @@
 import validator from 'validator';
 import isEmpty from 'lodash/isEmpty';
+import validUrl from 'valid-url';
 
 function validateInput(data) {
   const errors = {};
@@ -23,7 +24,7 @@ function validateInput(data) {
 
   for (let i = 0; i < data.ingredients.length; i += 1) {
     if (validator.isEmpty(data.ingredients[i].category)) {
-      errors.ingredients = 'Please add category';
+      errors.ingredients = 'Please add category to your ingredients';
     }
   }
 
@@ -31,6 +32,10 @@ function validateInput(data) {
     if (validator.isEmpty(data.steps[i].text)) {
       errors.steps = 'Please fill in your steps';
     }
+  }
+
+  if (!validUrl.isUri(data.image)) {
+    errors.image = 'Please enter a valid URL';
   }
 
 
