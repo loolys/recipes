@@ -192,4 +192,8 @@ NewRecipeForm.propTypes = {
   createRecipe: React.PropTypes.func.isRequired,
 };
 
+NewRecipeForm.propTypes = {
+  router: React.PropTypes.object.isRequired,
+};
+
 export default connect(null, { createRecipe })(NewRecipeForm);
