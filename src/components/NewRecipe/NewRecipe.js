@@ -9,7 +9,7 @@ class NewRecipe extends Component {
     return (
       <Grid className="latest-polls">
         <Row className="show-grid">
-          <Col md={6} mdOffset={3} sm={8} smOffset={2} xs={10} xsOffset={1}>
+          <Col md={6} mdOffset={3} sm={9} smOffset={1} xs={10} xsOffset={1}>
             <NewRecipeForm />
           </Col>
         </Row>

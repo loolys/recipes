@@ -21,6 +21,7 @@ class StepsList extends Component {
               <Button
                 onClick={removeStep(index)}
                 bsSize="xsmall"
+                bsStyle="danger"
               >
                 x
             </Button>
@@ -35,7 +36,7 @@ class StepsList extends Component {
 StepsList.propTypes = {
   changeStep: React.PropTypes.func.isRequired,
   removeStep: React.PropTypes.func.isRequired,
-  steps: React.PropTypes.object.isRequired,
+  steps: React.PropTypes.array.isRequired,
 };
 
 export default StepsList;
