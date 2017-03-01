@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Thumbnail, Button } from 'react-bootstrap';
-import lodashMap from 'lodash/map';
 import validUrl from 'valid-url';
 import { createRecipe } from '../../actions/recipeActions';
 import TextFieldGroup from '../common/TextFieldGroup';
 import Facts from './Facts';
-import CookingUnits from './data/units';
-import ProductCategories from './data/products';
+import StepsList from './StepsList';
+import IngredientList from './IngredientList';
+
 
 class NewRecipeForm extends Component {
   constructor(props) {
@@ -87,7 +87,6 @@ class NewRecipeForm extends Component {
     });
   }
 
-
   render() {
     const { title, errors, isLoading, description, image, time, portions } = this.state;
     let imgSrc;
@@ -96,14 +95,6 @@ class NewRecipeForm extends Component {
     } else {
       imgSrc = 'placeholder-thumbnail-medium.png';
     }
-
-    const options = lodashMap(CookingUnits, (val, key) =>
-      <option key={val} value={val}>{val}</option>
-    );
-
-    const catOptions = lodashMap(ProductCategories, (val, key) =>
-      <option key={val} value={val}>{val}</option>
-    );
 
     return (
       <form onSubmit={this.onSubmit}>
@@ -146,72 +137,21 @@ class NewRecipeForm extends Component {
         />
         
         <label htmlFor="ingredients">Ingredients</label>
-        {this.state.ingredients.map((ingredient, index) => {
-          return (<div className="form-group" key={index}>
-            <input
-              className="amount-input ingredient-list"
-              type="text"
-              name="amount"
-              placeholder="0"
-              value={ingredient.amount}
-              onChange={this.changeIngredient(index)}
-            />
-            <select
-              className="ingredient-list"
-              name="unit"
-              onChange={this.changeIngredient(index)}
-              value={ingredient.unit}
-            >
-              <option value="" disabled>Unit</option>
-              {options}
-            </select>
-            <input
-              className="ingredient-list"
-              type="text"
-              name="ingredient"
-              placeholder="ingredient"
-              value={ingredient.ingredient}
-              onChange={this.changeIngredient(index)}
-            />
-            <select
-              className="ingredient-list"
-              name="category"
-              onChange={this.changeIngredient(index)}
-              value={ingredient.category}
-            >
-              <option value="" disabled>category</option>
-              {catOptions}
-            </select>
-            <Button
-              onClick={this.removeIngredient(index)}
-              bsSize="xsmall">
-                x
-            </Button>
-          </div>);
-        })}
+        
+        <IngredientList
+          ingredients={this.state.ingredients}
+          changeIngredient={this.changeIngredient}
+          removeIngredient={this.removeIngredient}
+        />
+
         <div><button onClick={this.appendIngredient}>Add ingredient</button></div>
         <br />
         <label htmlFor="steps">Cooking Steps</label>
-        {this.state.steps.map((step, index) => {
-          return (
-            <div className="form-group" key={index}>
-              {index + 1 + '.'}
-              <textarea
-                className="step-area"
-                onChange={this.changeStep(index)}
-                name="text"
-                value={step.text}
-                cols="51"
-                rows="3"
-              />
-              <Button
-              onClick={this.removeStep(index)}
-              bsSize="xsmall">
-                x
-            </Button>
-            </div>
-          );
-        })}
+        <StepsList
+          changeStep={this.changeStep}
+          removeStep={this.removeStep}
+          steps={this.state.steps}
+        />
 
         <div><button onClick={this.appendStep}>Add Step</button></div>
 
