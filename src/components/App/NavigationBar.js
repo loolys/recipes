@@ -12,21 +12,29 @@ class NavigationBar extends Component {
   }
   render() {
     const userLinks = (
-      <Nav pullRight>
-        <NavItem href="#" onClick={this.logout.bind(this)}>Logout</NavItem>
-      </Nav>
+      <div>
+        <Nav>
+          <LinkContainer to="/new-recipe">
+            <NavItem>Add Recipe</NavItem>
+          </LinkContainer>
+        </Nav>
+        <Nav pullRight>
+          <NavItem href="#" onClick={this.logout.bind(this)}>Logout</NavItem>
+        </Nav>
+      </div>
     );
 
-  const guestLinks = (
-    <Nav pullRight>
-      <LinkContainer to="/Signup">
-        <NavItem>Signup</NavItem>
-      </LinkContainer>
-      <LinkContainer to="/Login">
-        <NavItem>Login</NavItem>
-      </LinkContainer>
-    </Nav>
-  );
+    const guestLinks = (
+      <Nav pullRight>
+        <LinkContainer to="/Signup">
+          <NavItem>Signup</NavItem>
+        </LinkContainer>
+        <LinkContainer to="/Login">
+          <NavItem>Login</NavItem>
+        </LinkContainer>
+      </Nav>
+    );
+    
     const { isAuthenticated } = this.props.auth;
     return (
       <Navbar>

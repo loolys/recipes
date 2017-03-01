@@ -24,6 +24,7 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
     "shortid": "^2.2.6",
+    "valid-url": "^1.0.9",
     "validator": "^6.2.1"
   },
   "scripts": {
