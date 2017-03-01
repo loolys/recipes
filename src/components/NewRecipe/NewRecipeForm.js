@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Thumbnail } from 'react-bootstrap';
+import { Thumbnail, Button } from 'react-bootstrap';
+import lodashMap from 'lodash/map';
 import validUrl from 'valid-url';
 import { createRecipe } from '../../actions/recipeActions';
 import TextFieldGroup from '../common/TextFieldGroup';
 import Facts from './Facts';
+import CookingUnits from './data/units';
+import ProductCategories from './data/products';
 
 class NewRecipeForm extends Component {
   constructor(props) {
@@ -17,12 +20,14 @@ class NewRecipeForm extends Component {
       image: '',
       time: '0',
       portions: '0',
-      ingredients: [{ amount: '', unit: '', ingredient: 'test', category: '' }],
+      ingredients: [{ amount: '', unit: '', ingredient: '', category: '' }],
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.appendIngredient = this.appendIngredient.bind(this);
+    this.changeIngredient = this.changeIngredient.bind(this);
+    this.removeIngredient = this.removeIngredient.bind(this);
   }
 
   onChange(e) {
@@ -36,9 +41,24 @@ class NewRecipeForm extends Component {
 
   appendIngredient(e) {
     e.preventDefault();
-    const ingredientObj = { amount: '', unit: '', ingredient: 'test', category: '' };
+    const ingredientObj = { amount: '', unit: '', ingredient: '', category: '' };
 
     this.setState({ ingredients: this.state.ingredients.concat(ingredientObj) });
+  }
+
+  changeIngredient = (idx) => (evt) => {
+    const newIngredients = this.state.ingredients.map((ingredient, sidx) => {
+      if (idx !== sidx) return ingredient;
+      return { ...ingredient, [evt.target.name]: evt.target.value };
+    });
+
+    this.setState({ ingredients: newIngredients });
+  }
+
+  removeIngredient = (idx) => () => {
+    this.setState({
+      ingredients: this.state.ingredients.filter((s, sidx) => idx !== sidx)
+    });
   }
 
 
@@ -50,6 +70,15 @@ class NewRecipeForm extends Component {
     } else {
       imgSrc = 'placeholder-thumbnail-medium.png';
     }
+
+    const options = lodashMap(CookingUnits, (val, key) =>
+      <option key={val} value={val}>{val}</option>
+    );
+
+    const catOptions = lodashMap(ProductCategories, (val, key) =>
+      <option key={val} value={val}>{val}</option>
+    );
+
     return (
       <form onSubmit={this.onSubmit}>
         <h1>Add a Recipe</h1>
@@ -90,12 +119,52 @@ class NewRecipeForm extends Component {
           onChange={this.onChange}
         />
         
+        <label htmlFor="ingredients">Ingredients</label>
         {this.state.ingredients.map((ingredient, index) => {
           return (<div className="form-group" key={index}>
-            <input type="text" />
-            <button onClick={this.appendIngredient}>add</button>
+            <input
+              className="amount-input ingredient-list"
+              type="text"
+              name="amount"
+              placeholder="0"
+              value={ingredient.amount}
+              onChange={this.changeIngredient(index)}
+            />
+            <select
+              className="ingredient-list"
+              name="unit"
+              onChange={this.changeIngredient(index)}
+              value={ingredient.unit}
+            >
+              <option value="" disabled>Unit</option>
+              {options}
+            </select>
+            <input
+              className="ingredient-list"
+              type="text"
+              name="ingredient"
+              placeholder="ingredient"
+              value={ingredient.ingredient}
+              onChange={this.changeIngredient(index)}
+            />
+            <select
+              className="ingredient-list"
+              name="category"
+              onChange={this.changeIngredient(index)}
+              value={ingredient.category}
+            >
+              <option value="" disabled>category</option>
+              {catOptions}
+            </select>
+            <Button
+              onClick={this.removeIngredient(index)}
+              bsSize="xsmall">
+                x
+            </Button>
           </div>);
         })}
+
+        <div><button onClick={this.appendIngredient}>Add ingredient</button></div>
       </form>
     );
   }

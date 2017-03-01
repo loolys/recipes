@@ -30,3 +30,11 @@ textarea {
 .number-input {
   width: 140px;
 }
+
+.amount-input {
+  width: 50px;
+}
+
+.ingredient-list {
+  margin-right: 10px;
+}

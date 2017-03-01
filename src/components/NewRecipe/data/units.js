@@ -1,0 +1,18 @@
+export default {
+  teaspoon: 'tsp.',
+  tablespoon: 'tbsp.',
+  'fluid ounce': 'fl oz',
+  cup: 'cup',
+  pint: 'pt',
+  quart: 'qt',
+  gallon: 'gal',
+  ml: 'ml',
+  l: 'l',
+  dl: 'dl',
+  cl: 'cl',
+  pound: 'lb',
+  ounce: 'oz',
+  mg: 'mg',
+  g: 'g',
+  kg: 'kg',
+};
