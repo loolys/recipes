@@ -8,15 +8,15 @@ class Facts extends Component {
       <Grid>
         <div className="form-group">
           <Row>
-            <Col md={3} className="facts">
+            <Col md={3} sm={3} xs={4} className="facts">
               <label htmlFor="time" className="control-label">Cooking Time(min)</label>
             </Col>
-            <Col md={3} className="facts">
+            <Col md={3} sm={3} xs={4} className="facts">
               <label htmlFor="Portions" className="control-label">Portions</label>
             </Col>
           </Row>
           <Row>
-            <Col md={3} className="facts">
+            <Col md={3} sm={3} xs={4} className="facts">
               <input
                 className="number-input"
                 name="time"
@@ -27,7 +27,7 @@ class Facts extends Component {
                 max="1000"
               />
             </Col>
-            <Col md={3} className="facts">
+            <Col md={3} sm={3} xs={4} className="facts">
               <input
                 className="number-input"
                 name="portions"

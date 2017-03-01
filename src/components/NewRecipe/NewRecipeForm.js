@@ -21,6 +21,7 @@ class NewRecipeForm extends Component {
       time: '0',
       portions: '0',
       ingredients: [{ amount: '', unit: '', ingredient: '', category: '' }],
+      steps: [{ text: '' }],
     };
 
     this.onChange = this.onChange.bind(this);
@@ -28,6 +29,9 @@ class NewRecipeForm extends Component {
     this.appendIngredient = this.appendIngredient.bind(this);
     this.changeIngredient = this.changeIngredient.bind(this);
     this.removeIngredient = this.removeIngredient.bind(this);
+    this.appendStep = this.appendStep.bind(this);
+    this.changeStep = this.changeStep.bind(this);
+    this.removeStep = this.removeStep.bind(this);
   }
 
   onChange(e) {
@@ -58,6 +62,28 @@ class NewRecipeForm extends Component {
   removeIngredient = (idx) => () => {
     this.setState({
       ingredients: this.state.ingredients.filter((s, sidx) => idx !== sidx)
+    });
+  }
+
+  appendStep(e) {
+    e.preventDefault();
+
+    const stepObj = { text: '' };
+    this.setState({ steps: this.state.steps.concat(stepObj) });
+  }
+
+  changeStep = (idx) => (evt) => {
+    const newStep = this.state.steps.map((step, sidx) => {
+      if (idx !== sidx) return step;
+      return { ...step, [evt.target.name]: evt.target.value };
+    });
+
+    this.setState({ steps: newStep });
+  }
+
+  removeStep = (idx) => () => {
+    this.setState({
+      steps: this.state.steps.filter((s, sidx) => idx !== sidx)
     });
   }
 
@@ -163,8 +189,33 @@ class NewRecipeForm extends Component {
             </Button>
           </div>);
         })}
-
         <div><button onClick={this.appendIngredient}>Add ingredient</button></div>
+        <br />
+        <label htmlFor="steps">Cooking Steps</label>
+        {this.state.steps.map((step, index) => {
+          return (
+            <div className="form-group" key={index}>
+              {index + 1 + '.'}
+              <textarea
+                className="step-area"
+                onChange={this.changeStep(index)}
+                name="text"
+                value={step.text}
+                cols="51"
+                rows="3"
+              />
+              <Button
+              onClick={this.removeStep(index)}
+              bsSize="xsmall">
+                x
+            </Button>
+            </div>
+          );
+        })}
+
+        <div><button onClick={this.appendStep}>Add Step</button></div>
+
+        
       </form>
     );
   }

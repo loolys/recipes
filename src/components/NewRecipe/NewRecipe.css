@@ -2,6 +2,13 @@ textarea {
   width: 100%;
 }
 
+.step-area {
+  width: 70%;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-bottom: 0px;
+}
+
 .thumbnail {
   position: relative;
   width: 200px;
