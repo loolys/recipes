@@ -6,6 +6,7 @@ import IndexPage from './components/IndexPage/IndexPage';
 import Signup from './components/Signup/Signup';
 import Login from './components/Login/Login';
 import NewRecipe from './components/NewRecipe/NewRecipe';
+import Recipe from './components/Recipe/Recipe';
 
 import requireAuth from './utils/requireAuth';
 
@@ -16,6 +17,7 @@ const Routes = (props) => (
       <Route path="/signup" component={Signup} />
       <Route path="/login" component={Login} />
       <Route path="/new-recipe" component={requireAuth(NewRecipe)} />
+      <Route path="/recipe/:id" component={Recipe} />
     </Route>
   </Router>
 );

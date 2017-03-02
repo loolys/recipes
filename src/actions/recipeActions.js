@@ -11,3 +11,9 @@ export function getFeatured() {
     return axios.get('/api/recipes');
   };
 }
+
+export function getRecipe(id) {
+  return dispatch => {
+    return axios.get(`/api/recipes/${id}`);
+  };
+}
