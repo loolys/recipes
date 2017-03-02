@@ -38,10 +38,21 @@ router.get('/', (req, res) => {
   RecipeModel.find({ featured: true }, (err, docs) => {
     if (err) throw err;
     if (docs) {
-      console.log(docs);
       res.json({ docs });
     } else {
       res.status(500).json({ error: 'not found' });
+    }
+  });
+});
+
+router.get('/:id', (req, res) => {
+  const query = RecipeModel.where({ _id: req.params.id });
+  query.findOne((err, docs) => {
+    if (err) throw err;
+    if (docs) {
+      res.json(docs);
+    } else {
+      res.status(500).json({ error: 'Recipe not found' });
     }
   });
 });

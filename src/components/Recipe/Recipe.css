@@ -1,0 +1,14 @@
+.recipe-img {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.recipe-title-card {
+  background-color: grey;
+  display: inline-block;
+  padding-right: 15px;
+  padding-left: 0px;
+  height: 200px;
+}
