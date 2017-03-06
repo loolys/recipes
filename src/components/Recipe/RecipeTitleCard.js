@@ -6,11 +6,11 @@ class RecipeTitleCard extends Component {
     return (
       <Grid className="">
         <Row className="text-center ">
-          <Col md={3} mdoffset={3} className="recipe-title-card">
+          <Col md={3} className="recipe-title-card">
             <Image className="recipe-img" src={this.props.image} responsive  />
           </Col>
-          <Col md={4} className="recipe-title-card">
-            <h1>{this.props.title}</h1>
+          <Col md={5} className="recipe-title-card">
+            <h2>{this.props.title}</h2>
             <p>{this.props.description}</p>
           </Col>
         </Row>

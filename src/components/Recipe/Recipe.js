@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Grid, Row } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import { getRecipe } from '../../actions/recipeActions';
 import RecipeTitleCard from './RecipeTitleCard';
+import RecipeCookingCard from './RecipeCookingCard';
 
 import './Recipe.css'
 
@@ -42,15 +43,26 @@ class Recipe extends React.Component {
       }));
   }
   render() {
-    console.log(this.state);
     return (
       <Grid>
         <Row>
+          <Col mdOffset={2}>
           <RecipeTitleCard
             title={this.state.title}
             description={this.state.description}
             image={this.state.image}
           />
+          </Col>
+        </Row>
+        <Row>
+          <Col mdOffset={2} md={6}>
+            <RecipeCookingCard
+              ingredients={this.state.ingredients}
+              portions={this.state.portions}
+              steps={this.state.steps}
+              author={this.state.author}
+            />
+          </Col>
         </Row>
       </Grid>
     );

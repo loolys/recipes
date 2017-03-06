@@ -28,7 +28,6 @@ class NewRecipeForm extends Component {
         { amount: '', unit: '', ingredient: '', category: '' },
       ],
       steps: [{ text: '' }],
-      errors: {},
     };
 
     this.onChange = this.onChange.bind(this);
