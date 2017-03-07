@@ -4,7 +4,7 @@ import { Thumbnail, Button } from 'react-bootstrap';
 import validUrl from 'valid-url';
 import classnames from 'classnames';
 import validateInput from '../../validators/recipe';
-import { createRecipe } from '../../actions/recipeActions';
+import { createRecipe, getRecipe } from '../../actions/recipeActions';
 import TextFieldGroup from '../common/TextFieldGroup';
 import Facts from './Facts';
 import StepsList from './StepsList';
@@ -38,6 +38,24 @@ class NewRecipeForm extends Component {
     this.appendStep = this.appendStep.bind(this);
     this.changeStep = this.changeStep.bind(this);
     this.removeStep = this.removeStep.bind(this);
+  }
+
+  componentDidMount() {
+    // Set state if editing an existing recipe.
+    if (this.props.id) {
+      this.props.getRecipe(this.props.id)
+        .then(res => {
+          this.setState({
+            title: res.data.title,
+            description: res.data.description,
+            image: res.data.image,
+            time: res.data.time,
+            portions: res.data.portions,
+            ingredients: res.data.ingredients,
+            steps: res.data.steps,
+          });
+        });
+    }
   }
 
   onChange(e) {
@@ -188,11 +206,13 @@ class NewRecipeForm extends Component {
 }
 
 NewRecipeForm.propTypes = {
+  getRecipe: React.PropTypes.func.isRequired,
   createRecipe: React.PropTypes.func.isRequired,
+  id: React.PropTypes.string
 };
 
 NewRecipeForm.contextTypes = {
   router: React.PropTypes.object.isRequired,
 };
 
-export default connect(null, { createRecipe })(NewRecipeForm);
+export default connect(null, { createRecipe, getRecipe })(NewRecipeForm);

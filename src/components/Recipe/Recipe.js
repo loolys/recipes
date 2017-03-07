@@ -18,6 +18,7 @@ class Recipe extends React.Component {
     super(props);
 
     this.state = {
+      id: '',
       title: '',
       description: '',
       image: '',
@@ -31,16 +32,19 @@ class Recipe extends React.Component {
 
   componentWillMount() {
     this.props.getRecipe(this.props.params.id)
-      .then((res) => this.setState({
-        title: res.data.title,
-        description: res.data.description,
-        image: res.data.image,
-        ingredients: res.data.ingredients,
-        portions: res.data.portions,
-        steps: res.data.steps,
-        time: res.data.time,
-        author: res.data.username,
-      }));
+      .then((res) => {
+        this.setState({
+          id: res.data._id,
+          title: res.data.title,
+          description: res.data.description,
+          image: res.data.image,
+          ingredients: res.data.ingredients,
+          portions: res.data.portions,
+          steps: res.data.steps,
+          time: res.data.time,
+          author: res.data.username,
+        });
+      });
   }
   render() {
     return (
@@ -60,6 +64,7 @@ class Recipe extends React.Component {
             portions={this.state.portions}
             steps={this.state.steps}
             author={this.state.author}
+            id={this.state.id}
           />
         </Row>
       </Grid>

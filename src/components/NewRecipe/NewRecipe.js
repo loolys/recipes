@@ -10,7 +10,7 @@ class NewRecipe extends Component {
       <Grid className="latest-polls">
         <Row className="show-grid">
           <Col md={6} mdOffset={3} sm={9} smOffset={1} xs={10} xsOffset={1}>
-            <NewRecipeForm />
+            <NewRecipeForm id={this.props.params.id} />
           </Col>
         </Row>
       </Grid>

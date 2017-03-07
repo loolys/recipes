@@ -10,7 +10,7 @@ import Recipe from './components/Recipe/Recipe';
 
 import requireAuth from './utils/requireAuth';
 
-const Routes = (props) => (
+const Routes = props => (
   <Router {...props}>
     <Route path="/" component={App}>
       <IndexRoute component={IndexPage} />
@@ -18,6 +18,7 @@ const Routes = (props) => (
       <Route path="/login" component={Login} />
       <Route path="/new-recipe" component={requireAuth(NewRecipe)} />
       <Route path="/recipe/:id" component={Recipe} />
+      <Route path="/edit/:id" component={NewRecipe} />
     </Route>
   </Router>
 );

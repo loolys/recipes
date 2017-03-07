@@ -1,5 +1,6 @@
 import React from 'react';
-import { Grid, Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router';
+import { Col } from 'react-bootstrap';
 
 const RecipeCookingCard = props => {
   console.log(props);
@@ -22,7 +23,8 @@ const RecipeCookingCard = props => {
         <ol>
           {stepsList}
         </ol>
-        Author: {props.author}
+        Author: {props.author} <br />
+        <Link to={`/edit/${props.id}`} className="btn btn-success">Edit Recipe</Link>
       </Col>
     </div>
   );
@@ -33,6 +35,7 @@ RecipeCookingCard.propTypes = {
   portions: React.PropTypes.string.isRequired,
   steps: React.PropTypes.array.isRequired,
   author: React.PropTypes.string.isRequired,
+  id: React.PropTypes.string.isRequired,
 };
 
 export default RecipeCookingCard;
