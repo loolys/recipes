@@ -54,15 +54,13 @@ class Recipe extends React.Component {
           />
           </Col>
         </Row>
-        <Row>
-          <Col mdOffset={2} md={6}>
-            <RecipeCookingCard
-              ingredients={this.state.ingredients}
-              portions={this.state.portions}
-              steps={this.state.steps}
-              author={this.state.author}
-            />
-          </Col>
+        <Row className="show-grid">
+          <RecipeCookingCard
+            ingredients={this.state.ingredients}
+            portions={this.state.portions}
+            steps={this.state.steps}
+            author={this.state.author}
+          />
         </Row>
       </Grid>
     );

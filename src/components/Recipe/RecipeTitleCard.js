@@ -5,8 +5,8 @@ class RecipeTitleCard extends Component {
   render() {
     return (
       <Grid className="">
-        <Row className="text-center ">
-          <Col md={3} className="recipe-title-card">
+        <Row className="text-center">
+          <Col md={2} className="recipe-title-card">
             <Image className="recipe-img" src={this.props.image} responsive  />
           </Col>
           <Col md={5} className="recipe-title-card">

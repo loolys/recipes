@@ -8,7 +8,7 @@
 .recipe-title-card {
   background-color: white;
   display: inline-block;
-  padding-right: 15px;
+  padding-right: 0px;
   padding-left: 0px;
   height: 200px;
 }
@@ -20,7 +20,6 @@
   padding-left: 15px;
   padding-bottom: 30px;
   margin-top: 30px;
-  height: 500px;
 }
 
 .vertical-line {
@@ -34,4 +33,24 @@
 
 .row-height {
   position: relative;
+}
+
+.box-set:before,
+.box-set:after {
+  content: "";
+  display: table;
+}
+.box-set:after {
+  clear: both;
+}
+.box-set {
+  *zoom: 1;
+  background-color: white;
+}
+
+.color-fill {
+  background-color: white;
+  margin-top: 25px;
+  height: 100%;
+  overflow: hidden;
 }

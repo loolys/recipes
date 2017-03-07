@@ -11,22 +11,20 @@ const RecipeCookingCard = props => {
     return <div key={step.text}><li>{step.text}</li></div>;
   });
   return (
-    <Grid className="remove-padding">
-      <Row class="row-height">
-        <Col className="recipe-cooking-card vertical-line" md={2}>
-          <h2>Ingredients</h2>
-          Portions: {props.portions}
-          {ingredientsList}
-        </Col>
-        <Col className="recipe-cooking-card pos-right" md={5}>
-          <h2>Cooking Steps</h2>
-          <ol>
-            {stepsList}
-          </ol>
-          Author: {props.author}
-        </Col>
-      </Row>
-    </Grid>
+    <div className="color-fill col-md-7 col-md-offset-2">
+      <Col className="recipe-cooking-card vertical-line" md={2}>
+        <h2>Ingredients</h2>
+        Portions: {props.portions}
+        {ingredientsList}
+      </Col>
+      <Col className="recipe-cooking-card pos-right" md={5}>
+        <h2>Cooking Steps</h2>
+        <ol>
+          {stepsList}
+        </ol>
+        Author: {props.author}
+      </Col>
+    </div>
   );
 };
 
