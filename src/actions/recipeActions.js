@@ -23,3 +23,9 @@ export function editRecipe(recipe) {
     return axios.post('/api/recipes/edit', recipe);
   };
 }
+
+export function fetchUsersRecipes(user) {
+  return dispatch => {
+    return axios.get(`/api/recipes/profile/${user}`);
+  }
+}

@@ -63,6 +63,10 @@ router.post('/edit', authenticate, (req,res) => {
   }
 });
 
+router.get('/profile/:user', (req, res) => {
+  res.json({ success: true });
+});
+
 router.get('/', (req, res) => {
   RecipeModel.find({ featured: true }, (err, docs) => {
     if (err) throw err;

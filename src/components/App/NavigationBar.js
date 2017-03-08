@@ -20,14 +20,14 @@ class NavigationBar extends Component {
           </LinkContainer>
         </Nav>
         <Nav pullRight>
-          <NavDropdown title={username} eventKey={1} id="profile-dropdown">
+          <NavDropdown title={username ? username : ''} eventKey={1} id="profile-dropdown">
             <LinkContainer to={`/profile/${username}`}>
               <MenuItem eventKey={1.1}>
                 Profile
               </MenuItem>
             </LinkContainer>
-            <MenuItem eventKey={1.2}>
-              <a href="#" onClick={this.logout.bind(this)}>Logout</a>
+            <MenuItem eventKey={1.2} onClick={this.logout.bind(this)}>
+              Logout
             </MenuItem>
           </NavDropdown>
         </Nav>
