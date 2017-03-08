@@ -64,7 +64,14 @@ router.post('/edit', authenticate, (req,res) => {
 });
 
 router.get('/profile/:user', (req, res) => {
-  res.json({ success: true });
+  const user = req.params.user;
+  RecipeModel.find({ username: user }, (err, docs) => {
+    if (err) {
+      res.status(500).json({ error: 'No recipes found' });
+    } else {
+      res.json({ docs });
+    }
+  });
 });
 
 router.get('/', (req, res) => {
