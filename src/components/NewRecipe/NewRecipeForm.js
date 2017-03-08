@@ -4,7 +4,7 @@ import { Thumbnail, Button } from 'react-bootstrap';
 import validUrl from 'valid-url';
 import classnames from 'classnames';
 import validateInput from '../../validators/recipe';
-import { createRecipe, getRecipe } from '../../actions/recipeActions';
+import { createRecipe, getRecipe, editRecipe } from '../../actions/recipeActions';
 import TextFieldGroup from '../common/TextFieldGroup';
 import Facts from './Facts';
 import StepsList from './StepsList';
@@ -28,6 +28,7 @@ class NewRecipeForm extends Component {
         { amount: '', unit: '', ingredient: '', category: '' },
       ],
       steps: [{ text: '' }],
+      id: this.props.id ? this.props.id : '',
     };
 
     this.onChange = this.onChange.bind(this);
@@ -66,10 +67,18 @@ class NewRecipeForm extends Component {
     e.preventDefault();
     const { errors, isValid } = validateInput(this.state);
     if (isValid) {
-      this.props.createRecipe(this.state).then(
-        () => this.context.router.push('/'),
-        err => this.setState({ errors: err.response.data.errors, isLoading: false }),
-      );
+      if (this.props.id) {
+        this.props.editRecipe(this.state).then(
+          () => this.context.router.push('/'),
+          err => this.setState({ errors: err.response.data.errors, isLoading: false }),
+        );
+      } else {
+        this.props.createRecipe(this.state).then(
+          () => this.context.router.push('/'),
+          err => this.setState({ errors: err.response.data.errors, isLoading: false }),
+        );
+      }
+      
     } else {
       this.setState({ errors });
     }
@@ -208,11 +217,12 @@ class NewRecipeForm extends Component {
 NewRecipeForm.propTypes = {
   getRecipe: React.PropTypes.func.isRequired,
   createRecipe: React.PropTypes.func.isRequired,
-  id: React.PropTypes.string
+  id: React.PropTypes.string,
+  editRecipe: React.PropTypes.func.isRequired,
 };
 
 NewRecipeForm.contextTypes = {
   router: React.PropTypes.object.isRequired,
 };
 
-export default connect(null, { createRecipe, getRecipe })(NewRecipeForm);
+export default connect(null, { createRecipe, getRecipe, editRecipe })(NewRecipeForm);

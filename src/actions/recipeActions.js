@@ -17,3 +17,9 @@ export function getRecipe(id) {
     return axios.get(`/api/recipes/${id}`);
   };
 }
+
+export function editRecipe(recipe) {
+  return dispatch => {
+    return axios.post('/api/recipes/edit', recipe);
+  };
+}

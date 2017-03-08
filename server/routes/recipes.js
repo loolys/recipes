@@ -34,6 +34,26 @@ router.post('/', authenticate, (req, res) => {
   }
 });
 
+router.post('/edit', authenticate, (req,res) => {
+  const { errors, isValid } = validateInput(req.body);
+  if (isValid) {
+    const { title, description, image, time, portions, ingredients, steps, id } = req.body;
+
+    RecipeModel.findByIdAndUpdate(id, { $set: {
+      title,
+      description,
+      image,
+      time,
+      portions,
+      ingredients,
+      steps,
+    }}, { new: true }, (err, docs) => {
+      if (err) throw err;
+      res.json({ success: true });
+    });
+  }
+});
+
 router.get('/', (req, res) => {
   RecipeModel.find({ featured: true }, (err, docs) => {
     if (err) throw err;
