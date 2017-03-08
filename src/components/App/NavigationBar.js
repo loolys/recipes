@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { Link } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 import { connect } from 'react-redux';
@@ -11,6 +11,7 @@ class NavigationBar extends Component {
     this.props.logout();
   }
   render() {
+    const username = this.props.auth.user.username;
     const userLinks = (
       <div>
         <Nav>
@@ -19,7 +20,16 @@ class NavigationBar extends Component {
           </LinkContainer>
         </Nav>
         <Nav pullRight>
-          <NavItem href="#" onClick={this.logout.bind(this)}>Logout</NavItem>
+          <NavDropdown title={username} eventKey={1} id="profile-dropdown">
+            <LinkContainer to={`/profile/${username}`}>
+              <MenuItem eventKey={1.1}>
+                Profile
+              </MenuItem>
+            </LinkContainer>
+            <MenuItem eventKey={1.2}>
+              <a href="#" onClick={this.logout.bind(this)}>Logout</a>
+            </MenuItem>
+          </NavDropdown>
         </Nav>
       </div>
     );

@@ -1,5 +1,5 @@
-Fix the edit function so that you can edit saved recipes.
-Protect edit function so only the author can change it.
-Add users recipes to their profiles.
+Add users recipes to their profiles:
+  1.  Add a Profile page
+  2.  Load the recipes to it
 let users save recipes and make shopping lists.
 add latest recipes to the frontpage.
