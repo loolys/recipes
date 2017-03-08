@@ -21,7 +21,7 @@ class IndexPage extends Component {
     return (
       <Grid>
         <Row>
-          <Col md={6} mdOffset={3}>
+          <Col lg={6} lgOffset={3} md={7} mdOffset={2} sm={8} smOffset={2} xs={10} xsOffset={1}>
             <IndexCarousel images={this.state.data} />
           </Col>
         </Row>
