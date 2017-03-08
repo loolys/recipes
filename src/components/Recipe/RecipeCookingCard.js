@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Col } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 const RecipeCookingCard = props => {
   console.log(props);
@@ -24,7 +25,9 @@ const RecipeCookingCard = props => {
           {stepsList}
         </ol>
         Author: {props.author} <br />
-        <Link to={`/edit/${props.id}`} className="btn btn-success">Edit Recipe</Link>
+        { props.author === props.auth.user.username ?
+         <Link to={`/edit/${props.id}`} className="btn btn-success">Edit Recipe</Link> : '' }
+        
       </Col>
     </div>
   );
@@ -36,6 +39,13 @@ RecipeCookingCard.propTypes = {
   steps: React.PropTypes.array.isRequired,
   author: React.PropTypes.string.isRequired,
   id: React.PropTypes.string.isRequired,
+  auth: React.PropTypes.object.isRequired,
 };
 
-export default RecipeCookingCard;
+function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+  };
+}
+
+export default connect(mapStateToProps, {})(RecipeCookingCard);

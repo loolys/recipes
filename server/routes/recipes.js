@@ -38,8 +38,13 @@ router.post('/edit', authenticate, (req,res) => {
   const { errors, isValid } = validateInput(req.body);
   if (isValid) {
     const { title, description, image, time, portions, ingredients, steps, id } = req.body;
-
-    RecipeModel.findByIdAndUpdate(id, { $set: {
+    let username;
+    RecipeModel.findById(id, (err, docs) => {
+      if (err) throw err;
+      username = docs.username;
+    }).then(() => {
+      if (username === req.currentUser.username) {
+      RecipeModel.findByIdAndUpdate(id, { $set: {
       title,
       description,
       image,
@@ -47,9 +52,13 @@ router.post('/edit', authenticate, (req,res) => {
       portions,
       ingredients,
       steps,
-    }}, { new: true }, (err, docs) => {
-      if (err) throw err;
-      res.json({ success: true });
+      }}, { new: true }, (err, docs) => {
+        if (err) throw err;
+        res.json({ success: true });
+      });
+      } else {
+        res.status(500).json({ error: 'not authorized to edit'});
+      }
     });
   }
 });
