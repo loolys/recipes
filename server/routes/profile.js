@@ -45,22 +45,22 @@ router.get('/recipes/:user', authenticate, (req, res) => {
   const username = req.currentUser.username;
 
   SavedRecipesModel.find({ username }, (err, docs) => {
-    if (err) {
+    if (err || docs.length == 0) {
       res.status(500).json({ error: 'No saved recipes found' });
+    } else {
+      const recipes = docs[0].recipes;
+      RecipeModel.find({
+        _id: {
+          $in: recipes,
+        },
+      }, (err, docs) => {
+        if (err) {
+          res.status(500).json({ error: 'No recipes found' });
+        } else {
+          res.json({ docs });
+        }
+      });
     }
-    const recipes = docs[0].recipes;
-
-    RecipeModel.find({
-      _id: {
-        $in: recipes,
-      },
-    }, (err, docs) => {
-      if (err) {
-        res.status(500).json({ error: 'No recipes found' });
-      } else {
-        res.json({ docs });
-      }
-    });
   });
 });
 

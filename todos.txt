@@ -1,5 +1,1 @@
-Add users recipes to their profiles:
-  1.  Add a Profile page
-  2.  Load the recipes to it
-let users save recipes and make shopping lists.
 add latest recipes to the frontpage.
