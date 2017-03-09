@@ -2,6 +2,7 @@ const express = require('express');
 const authenticate = require('../middlewares/authenticate');
 const validateInput = require('./validators/recipe');
 const SavedRecipesModel = require('../models/saved-recipes-model');
+const RecipeModel = require('../models/recipe-model');
 
 const router = express.Router();
 
@@ -37,6 +38,29 @@ router.post('/save', authenticate, (req, res) => {
         }
       })
     }
+  });
+});
+
+router.get('/recipes/:user', authenticate, (req, res) => {
+  const username = req.currentUser.username;
+
+  SavedRecipesModel.find({ username }, (err, docs) => {
+    if (err) {
+      res.status(500).json({ error: 'No saved recipes found' });
+    }
+    const recipes = docs[0].recipes;
+
+    RecipeModel.find({
+      _id: {
+        $in: recipes,
+      },
+    }, (err, docs) => {
+      if (err) {
+        res.status(500).json({ error: 'No recipes found' });
+      } else {
+        res.json({ docs });
+      }
+    });
   });
 });
 

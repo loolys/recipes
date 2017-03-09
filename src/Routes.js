@@ -8,6 +8,7 @@ import Login from './components/Login/Login';
 import NewRecipe from './components/NewRecipe/NewRecipe';
 import Recipe from './components/Recipe/Recipe';
 import Profile from './components/Profile/Profile';
+import SavedRecipes from './components/Profile/SavedRecipes';
 
 import requireAuth from './utils/requireAuth';
 
@@ -21,6 +22,7 @@ const Routes = props => (
       <Route path="/recipe/:id" component={Recipe} />
       <Route path="/edit/:id" component={NewRecipe} />
       <Route path="/profile/:user" component={Profile} />
+      <Route path="/profile/saved/:user" component={SavedRecipes} />
     </Route>
   </Router>
 );

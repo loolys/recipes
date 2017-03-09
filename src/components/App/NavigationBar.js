@@ -26,7 +26,12 @@ class NavigationBar extends Component {
                 Profile
               </MenuItem>
             </LinkContainer>
-            <MenuItem eventKey={1.2} onClick={this.logout.bind(this)}>
+            <LinkContainer to={`/profile/saved/${username}`}>
+              <MenuItem eventKey={1.2}>
+                Saved Recipes
+              </MenuItem>
+            </LinkContainer>
+            <MenuItem eventKey={1.3} onClick={this.logout.bind(this)}>
               Logout
             </MenuItem>
           </NavDropdown>
