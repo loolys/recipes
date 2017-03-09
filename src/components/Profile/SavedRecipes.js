@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Media, Button, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { Link } from 'react-router';
 import { getSavedRecipes, removeSavedRecipe } from '../../actions/profileActions';
+import ShoppingList from './ShoppingList';
 
 class SavedRecipes extends React.Component {
   constructor(props) {
@@ -10,8 +11,12 @@ class SavedRecipes extends React.Component {
 
     this.state = {
       data: [],
+      shoppingList: [],
+      showShoppingList: false,
       error: '',
     };
+
+    this.toggleShoppingList = this.toggleShoppingList.bind(this);
   }
 
   componentDidMount() {
@@ -38,7 +43,23 @@ class SavedRecipes extends React.Component {
     );
   }
 
+  toggleShoppingList() {
+    this.setState({ showShoppingList: !this.state.showShoppingList });
+  }
+
   render() {
+    let sorted = [];
+    if (this.state.data.length > 0) {
+      let flatArr = this.state.data.map(item => {
+        return item.ingredients;
+      });
+      flatArr = flatArr.reduce((a, b) => {
+        return a.concat(b);
+      });
+      sorted = flatArr.sort((a, b) => {
+        return a.category - b.category;
+      });
+    }
     const recipeMedia = this.state.data.map(item => {
       return (<div key={item._id}>
           <ListGroupItem>
@@ -72,6 +93,11 @@ class SavedRecipes extends React.Component {
 
     return (
       <div className="col-md-6">
+        <Button onClick={this.toggleShoppingList} bsStyle="primary">
+          Show Shopping List
+        </Button>
+        { this.state.showShoppingList ? <ShoppingList ingredients={sorted} /> : ''}
+        
         {recipeMedia}
       </div>
     );
