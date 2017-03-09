@@ -64,4 +64,23 @@ router.get('/recipes/:user', authenticate, (req, res) => {
   });
 });
 
+router.post('/remove', authenticate, (req, res) => {
+  const username = req.currentUser.username;
+
+  SavedRecipesModel.find({ username }, (err, docs) => {
+    if (err) throw err;
+    const toRemove = req.body._id;
+    const filtered = docs[0].recipes.filter(item => {
+      return item !== toRemove;
+    });
+    console.log(docs);
+    SavedRecipesModel.findOneAndUpdate({ username }, {
+      $set: { recipes: filtered }
+    }, { new: true }, (err, docs) => {
+      if (err) throw err;
+      res.json({ success: true });
+    });
+  });
+});
+
 module.exports = router;

@@ -11,3 +11,9 @@ export function getSavedRecipes(user) {
     return axios.get(`/api/profile/recipes/${user}`);
   };
 }
+
+export function removeSavedRecipe(item) {
+  return dispatch => {
+    return axios.post('/api/profile/remove', item);
+  };
+}
