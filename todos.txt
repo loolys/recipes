@@ -1,1 +1,2 @@
-add latest recipes to the frontpage.
+search function
+line through shopping list item on click

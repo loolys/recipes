@@ -35,3 +35,9 @@ export function getRecipeList() {
     return axios.get('/api/recipes/all-recipes');
   };
 }
+
+export function searchRecipes(search) {
+  return dispatch => {
+    return axios.post('/api/recipes/search', search);
+  };
+}

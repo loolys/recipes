@@ -52,7 +52,7 @@ class NavigationBar extends Component {
     
     const { isAuthenticated } = this.props.auth;
     return (
-      <Navbar>
+      <Navbar className="navbar-no-margin">
         <Navbar.Header>
         <Navbar.Brand>
           <Link to="/">React-Bootstrap</Link>

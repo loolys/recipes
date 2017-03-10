@@ -111,4 +111,16 @@ router.get('/all-recipes', (req, res) => {
   })
 });
 
+router.post('/search', (req, res) => {
+  const search = req.body.search;
+
+  RecipeModel.find({ $text: { $search: search }}).exec((err, docs) => {
+    if (err) {
+      res.status(500).json({ error: 'Something went wrong in search' });
+    } else {
+      res.json({ docs });
+    }
+  });
+});
+
 module.exports = router;
