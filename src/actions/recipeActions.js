@@ -14,7 +14,7 @@ export function getFeatured() {
 
 export function getRecipe(id) {
   return dispatch => {
-    return axios.get(`/api/recipes/${id}`);
+    return axios.get(`/api/recipes/specific/${id}`);
   };
 }
 
@@ -27,5 +27,11 @@ export function editRecipe(recipe) {
 export function fetchUsersRecipes(user) {
   return dispatch => {
     return axios.get(`/api/recipes/profile/${user}`);
-  }
+  };
+}
+
+export function getRecipeList() {
+  return dispatch => {
+    return axios.get('/api/recipes/all-recipes');
+  };
 }

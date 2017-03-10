@@ -164,7 +164,7 @@ class NewRecipeForm extends Component {
         </div>
      
         <label htmlFor="image">Your Image</label>
-        <Thumbnail href="#" src={imgSrc} />
+        <Thumbnail className="form-image" href="#" src={imgSrc} />
 
         <TextFieldGroup
           name="image"

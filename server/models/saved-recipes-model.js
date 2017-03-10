@@ -6,6 +6,7 @@ const UserRecipeSchema = new Schema({
   username: {
     type: String,
     required: true,
+    index: true,
   },
   recipes: {
     type: Array,

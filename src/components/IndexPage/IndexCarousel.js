@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Carousel, Image } from 'react-bootstrap';
 import { Link } from 'react-router';
 
+import './IndexCarousel.css';
+
 class IndexCarousel extends Component {
   render() {
     const { images } = this.props;
@@ -9,10 +11,9 @@ class IndexCarousel extends Component {
       return (
         <Carousel.Item key={item._id}>
           <Link to={`/recipe/${item._id}`}>
-            <Image width={600} height={400} alt={item.title} src={item.image} responsive />
+            <Image width={600} height={400} alt={item.title} src={item.image} />
             <Carousel.Caption>
               <h3>{item.title}</h3>
-              <p>{item.description}</p>
             </Carousel.Caption>
           </Link>
         </Carousel.Item>     

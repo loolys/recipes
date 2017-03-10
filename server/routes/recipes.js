@@ -85,7 +85,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/specific/:id', (req, res) => {
   const query = RecipeModel.where({ _id: req.params.id });
   query.findOne((err, docs) => {
     if (err) throw err;
@@ -95,6 +95,20 @@ router.get('/:id', (req, res) => {
       res.status(500).json({ error: 'Recipe not found' });
     }
   });
+});
+
+router.get('/all-recipes', (req, res) => {
+  let query = RecipeModel.find({});
+
+  query.limit(25);
+
+  query.exec((err, docs) => {
+    if (err) {
+      res.status(500).json({ error: 'found nothing' });
+    } else {
+      res.json({ docs });
+    }
+  })
 });
 
 module.exports = router;
