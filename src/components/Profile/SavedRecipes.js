@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Media, Button, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { Link } from 'react-router';
+import underscore from 'underscore';
 import { getSavedRecipes, removeSavedRecipe } from '../../actions/profileActions';
 import ShoppingList from './ShoppingList';
 
@@ -53,12 +54,13 @@ class SavedRecipes extends React.Component {
       let flatArr = this.state.data.map(item => {
         return item.ingredients;
       });
+
       flatArr = flatArr.reduce((a, b) => {
         return a.concat(b);
       });
-      sorted = flatArr.sort((a, b) => {
-        return a.category - b.category;
-      });
+
+      sorted = underscore.sortBy(flatArr, 'category');
+      console.log(sorted);
     }
     const recipeMedia = this.state.data.map(item => {
       return (<div key={item._id}>

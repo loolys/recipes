@@ -39,6 +39,7 @@ export default class ShoppingList extends React.Component {
             name={item.ingredient}
           >
             {item.amount + ' ' + item.unit + ' ' + item.ingredient}
+            <small className="pull-right">{item.category}</small>
           </ListGroupItem>
         </div>
       );
