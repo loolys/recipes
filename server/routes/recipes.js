@@ -98,7 +98,7 @@ router.get('/specific/:id', (req, res) => {
 });
 
 router.get('/all-recipes', (req, res) => {
-  let query = RecipeModel.find({});
+  let query = RecipeModel.find({}).sort({ date: -1 });
 
   query.limit(25);
 
