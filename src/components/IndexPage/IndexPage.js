@@ -33,6 +33,15 @@ class IndexPage extends Component {
           <br />
           <LatestRecipes data={this.state.latestRecipeData} />
         </Row>
+        <Row>
+          <Col className="text-center footer-margin">
+            <span>
+              <small>
+                COPYRIGHT 2017 LOOLY. ALL RIGHTS RESERVED
+              </small>
+            </span>
+          </Col>
+        </Row>
       </Grid>
     );
   }

@@ -7,16 +7,16 @@ class Profile extends React.Component {
     const user = this.props.params.user;
     return (
       <Grid>
-        <Jumbotron>
-          <Row>
-            <Col md={6} mdOffset={3} className="text-center">
-              <h2>Your Profile Page.</h2>
-            </Col>
-          </Row>
-          <Row>
-            <UserRecipes user={user} />
-          </Row>
-        </Jumbotron>
+        <Row className="container white-bg latest-recipes-box">
+          <Col className="text-center dark-frame">
+            <span className="title-text">Your Profile</span>
+          </Col>
+        </Row>
+        <Row className="white-bg padding-left">
+          <br />
+          <UserRecipes user={user} />
+          <br />
+        </Row>
       </Grid>
     );
   }

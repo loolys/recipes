@@ -5,3 +5,7 @@
 .list-group-item:hover {
   cursor: pointer;
 }
+
+.padding-left {
+  padding-left: 15px;
+}
