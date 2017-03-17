@@ -83,4 +83,20 @@ router.post('/remove', authenticate, (req, res) => {
   });
 });
 
+router.get('/saved/:id', authenticate, (req, res) => {
+  const id = req.params.id;
+  const username = req.currentUser.username;
+  SavedRecipesModel.find({ username }, (err, docs) => {
+    if (docs.length) {
+      if (docs[0].recipes.indexOf(id) > -1) {
+        res.json({ success: true });
+      } else {
+        res.json({ success: false });
+      }
+    } else {
+      res.json({ success: false });
+    }
+  });
+});
+
 module.exports = router;

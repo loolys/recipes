@@ -2,22 +2,37 @@ import React from 'react';
 import { Link } from 'react-router';
 import { Col, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { saveUserRecipe } from '../../actions/profileActions';
+import { saveUserRecipe, findIfSaved } from '../../actions/profileActions';
 
 class RecipeCookingCard extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      successSave: '',
+      id: this.props.id,
+    };
+
     this.saveRecipe = this.saveRecipe.bind(this);
   }
 
   saveRecipe() {
-    console.log(this.props.id);
-    this.props.saveUserRecipe({ id: this.props.id });
+    this.props.saveUserRecipe({ id: this.props.id })
+      .then(
+        () => this.setState({ successSave: 'Saved' })
+      );
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.props.findIfSaved(nextProps.id)
+      .then((res) => {
+        if (res.data.success) {
+          this.setState({ successSave: 'Saved' });
+        }
+      });
   }
 
   render() {
-    console.log(this.props);
     const ingredientsList = this.props.ingredients.map(item => {
       return <div key={item.ingredient}>{item.amount} {item.ingredient}</div>;
     });
@@ -33,7 +48,9 @@ class RecipeCookingCard extends React.Component {
           {ingredientsList}
           <br />
           { this.props.auth.user.username ?
-            <Button onClick={this.saveRecipe} bsSize="small" bsStyle="primary">Save Recipe</Button> : ''}
+            <Button onClick={this.saveRecipe} bsSize="small" bsStyle="primary">
+              {this.state.successSave ? this.state.successSave : 'Save Recipe'}
+            </Button> : ''}
         </Col>
         <Col className="recipe-cooking-card pos-right" md={7}>
           <h2 className="text-center">Cooking Steps</h2>
@@ -57,6 +74,7 @@ RecipeCookingCard.propTypes = {
   id: React.PropTypes.string.isRequired,
   auth: React.PropTypes.object.isRequired,
   saveUserRecipe: React.PropTypes.func.isRequired,
+  findIfSaved: React.PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
@@ -65,4 +83,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { saveUserRecipe })(RecipeCookingCard);
+export default connect(mapStateToProps, { saveUserRecipe, findIfSaved })(RecipeCookingCard);

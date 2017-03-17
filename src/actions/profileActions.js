@@ -17,3 +17,9 @@ export function removeSavedRecipe(item) {
     return axios.post('/api/profile/remove', item);
   };
 }
+
+export function findIfSaved(id) {
+  return dispatch => {
+    return axios.get(`/api/profile/saved/${id}`);
+  };
+}
