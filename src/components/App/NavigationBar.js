@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Image } from 'react-bootstrap';
 import { Link } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 import { connect } from 'react-redux';
@@ -54,9 +54,9 @@ class NavigationBar extends Component {
     return (
       <Navbar className="navbar-no-margin">
         <Navbar.Header>
-        <Navbar.Brand>
-          <Link to="/">React-Bootstrap</Link>
-        </Navbar.Brand>
+          <Link to="/">
+            <Image className="logo-img" src="/recipe-logo.png" />
+          </Link>
         </Navbar.Header>
         { isAuthenticated ? userLinks : guestLinks }
       </Navbar>

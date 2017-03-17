@@ -1,2 +1,0 @@
-search function
-line through shopping list item on click

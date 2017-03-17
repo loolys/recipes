@@ -16,9 +16,11 @@ class NewRecipeForm extends Component {
     super(props);
     this.state = {
       title: '',
+      titleCharsLeft: 80,
       errors: {},
       isLoading: false,
       description: '',
+      descriptionCharsLeft: 300,
       image: '',
       time: '0',
       portions: '0',
@@ -60,7 +62,28 @@ class NewRecipeForm extends Component {
   }
 
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    if (e.target.name === 'title') {
+      let charsLeft = 80 - e.target.value.length;
+      if (charsLeft >= 0) {
+        this.setState({
+          [e.target.name]: e.target.value,
+          titleCharsLeft: charsLeft
+        });
+      }
+    } 
+    else if (e.target.name === 'description') {
+      let charsLeft = 300 - e.target.value.length;
+      if (charsLeft >= 0) {
+        this.setState({
+          [e.target.name]: e.target.value,
+          descriptionCharsLeft: charsLeft,
+        });
+      }
+    } 
+    else {
+      this.setState({ [e.target.name]: e.target.value });      
+    }
+
   }
 
   onSubmit(e) {
@@ -139,76 +162,93 @@ class NewRecipeForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <h1>Add a Recipe</h1>
+        <div className="white-bg-form">
+          <h1>Add a Recipe</h1>
 
-        <TextFieldGroup
-          name="title"
-          value={title}
-          onChange={this.onChange}
-          error={errors.title}
-          field="title"
-          label="Recipe Title"
-        />
-        
-        <div className={classnames('form-group', { 'has-error': errors.description })}>
-          <label className="control-label" htmlFor="description">Short Recipe Description</label>
-          <textarea
-            className="form-control"
-            name="description"
-            value={description}
+          <TextFieldGroup
+            name="title"
+            value={title}
             onChange={this.onChange}
-            cols="51"
-            rows="3"
+            error={errors.title}
+            field="title"
+            label="Recipe Title"
           />
-          { errors.description ? <span className="help-block">{errors.description}</span> : '' }
+          
+          <p className="pull-right">{this.state.titleCharsLeft} characters left</p>
+          <br />
+          <div className={classnames('form-group', { 'has-error': errors.description })}>
+            <label className="control-label" htmlFor="description">Short Recipe Description</label>
+            <textarea
+              className="form-control"
+              name="description"
+              value={description}
+              onChange={this.onChange}
+              cols="51"
+              rows="3"
+            />
+            { errors.description ? <span className="help-block">{errors.description}</span> : '' }
+            <p className="pull-right">{this.state.descriptionCharsLeft} characters left</p>
+          </div>
         </div>
      
-        <label htmlFor="image">Your Image</label>
-        <Thumbnail className="form-image" href="#" src={imgSrc} />
+        <div className="white-bg-form">
+          <label htmlFor="image"><h1>Your Image</h1></label>
+          <Thumbnail className="form-image" href="#" src={imgSrc} />
 
-        <TextFieldGroup
-          name="image"
-          value={image}
-          onChange={this.onChange}
-          error={errors.image}
-          field="image"
-          label="Image URL Link"
-        />
+          <TextFieldGroup
+            name="image"
+            value={image}
+            onChange={this.onChange}
+            error={errors.image}
+            field="image"
+            label="Image URL Link"
+          />
+
+          <br />
+        </div>
       
-        <Facts
-          time={time}
-          portions={portions}
-          onChange={this.onChange}
-        />
-        
-        <div className={classnames('form-group', { 'has-error': errors.ingredients })}>
-          <label className="control-label" htmlFor="ingredients">Ingredients</label>
-          <IngredientList
-            ingredients={this.state.ingredients}
-            changeIngredient={this.changeIngredient}
-            removeIngredient={this.removeIngredient}
-            error={errors.ingredients}
+        <div className="white-bg-form">
+          <h1>Recipe Details</h1>
+          <Facts
+            time={time}
+            portions={portions}
+            onChange={this.onChange}
           />
-          { errors.ingredients ? <span className="help-block">{errors.ingredients}</span> : '' }
-        </div>
 
-        <div>
-          <Button bsStyle="primary" onClick={this.appendIngredient}>Add ingredient</Button>
-        </div>
-        <br />
+          <br />
+          
+          <div className={classnames('form-group', { 'has-error': errors.ingredients })}>
+            <label className="control-label" htmlFor="ingredients">Ingredients</label>
+            <IngredientList
+              ingredients={this.state.ingredients}
+              changeIngredient={this.changeIngredient}
+              removeIngredient={this.removeIngredient}
+              error={errors.ingredients}
+            />
+            { errors.ingredients ? <span className="help-block">{errors.ingredients}</span> : '' }
+            <br />
+          </div>
 
-        <div className={classnames('form-group', { 'has-error': errors.steps })}>
-          <label className="control-label" htmlFor="steps">Cooking Steps</label>
-          <StepsList
-            changeStep={this.changeStep}
-            removeStep={this.removeStep}
-            steps={this.state.steps}
-          />
-          { errors.steps ? <span className="help-block">{errors.steps}</span> : '' }
-        </div>
+          <div>
+            <Button bsStyle="primary" onClick={this.appendIngredient}>Add ingredient</Button>
+          </div>
+          <br />
 
-        <Button bsStyle="primary" onClick={this.appendStep}>Add Step</Button>
-        <Button type="submit" bsStyle="success" className="align-right">Save Recipe</Button>
+          <div className={classnames('form-group', { 'has-error': errors.steps })}>
+            <label className="control-label" htmlFor="steps">Cooking Steps</label>
+            <StepsList
+              changeStep={this.changeStep}
+              removeStep={this.removeStep}
+              steps={this.state.steps}
+            />
+            { errors.steps ? <span className="help-block">{errors.steps}</span> : '' }
+            <br />
+          </div>
+
+          <Button bsStyle="primary" onClick={this.appendStep}>Add Step</Button>
+          <Button type="submit" bsStyle="success" className="align-right">Save Recipe</Button>
+          <br />
+        </div>
       </form>
     );
   }

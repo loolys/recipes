@@ -15,4 +15,5 @@ export default {
   mg: 'mg',
   g: 'g',
   kg: 'kg',
+  empty: ' ',
 };

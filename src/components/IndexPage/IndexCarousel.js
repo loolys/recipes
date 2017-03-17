@@ -9,9 +9,9 @@ class IndexCarousel extends Component {
     const { images } = this.props;
     const Caro = images.map((item) => {
       return (
-        <Carousel.Item key={item._id}>
+        <Carousel.Item key={item._id} className="carousel-image">
           <Link to={`/recipe/${item._id}`}>
-            <Image width={600} height={400} alt={item.title} src={item.image} />
+            <Image className="carousel-image" alt={item.title} src={item.image} />
             <Carousel.Caption>
               <h3>{item.title}</h3>
             </Carousel.Caption>

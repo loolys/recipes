@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, Well } from 'react-bootstrap';
 import IndexCarousel from './IndexCarousel';
 import LatestRecipes from './LatestRecipes';
 import { getFeatured, getRecipeList } from '../../actions/recipeActions';
@@ -22,13 +22,11 @@ class IndexPage extends Component {
   }
   render() {
     return (
-      <Grid>
+      <Grid fluid>
         <Row>
-          <Col lg={6} lgOffset={3} md={7} mdOffset={2} sm={8} smOffset={2} xs={10} xsOffset={1}>
-            <IndexCarousel images={this.state.carouselData} />
-          </Col>
+          <IndexCarousel images={this.state.carouselData} />
         </Row>
-        <Row>
+        <Row className="container white-bg center">
         <br />
           <LatestRecipes data={this.state.latestRecipeData} />
         </Row>

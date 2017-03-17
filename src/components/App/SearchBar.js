@@ -30,12 +30,12 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar>
-          <Nav>
-            <NavItem>
+        <Navbar inverse>
+          <Nav className="make-wide">
+            <NavItem className="make-wide">
               <form className="form-inline" onSubmit={this.onSubmit}>
                 <input
-                  className="search-box"
+                  className="search-box dark-font"
                   name='search'
                   type="text" name="search"
                   placeholder="Search..."

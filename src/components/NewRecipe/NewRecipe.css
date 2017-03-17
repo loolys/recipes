@@ -39,7 +39,7 @@ textarea {
 }
 
 .amount-input {
-  width: 50px;
+  width: 65px;
 }
 
 .ingredient-list {
@@ -50,4 +50,14 @@ textarea {
   float: right;
   margin-top: 30px;
   margin-right: 30px;
+}
+
+.white-bg-form {
+  background-color: white;
+  padding: 5px 20px 35px 20px;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  margin-bottom: 0px;
 }

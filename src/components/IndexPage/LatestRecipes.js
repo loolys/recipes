@@ -6,11 +6,17 @@ class LatestRecipes extends React.Component {
   render() {
     console.log(this.props.data);
     const thumbnails = this.props.data.map(item => {
-      return (<Col key={item._id} xs={6} md={3} sm={4}>
+      let description;
+      if (item.description.length > 15) {
+        description = item.description.slice(0,15) + "...";
+      } else {
+        description = item.description;
+      }
+      return (<Col key={item._id} xs={6} md={3} sm={3}>
         <Link to={`/recipe/${item._id}`}>
           <Thumbnail src={item.image} alt="food">
             <h3>{item.title}</h3>
-            <p>{item.description}</p>
+            <p>{description}</p>
           </Thumbnail>
         </Link>
       </Col>);
