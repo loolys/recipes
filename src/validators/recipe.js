@@ -8,8 +8,16 @@ function validateInput(data) {
     errors.title = 'Please add a title';
   }
 
+  if (data.title.length > 80) {
+    errors.title = 'Title to long, please remove some characters';
+  }
+
   if (validator.isEmpty(data.description)) {
     errors.description = 'Please add a description';
+  }
+
+  if (data.description.length > 300) {
+    errors.description = 'Description to long, please remove some characters';
   }
 
   if (validator.isEmpty(data.image)) {
