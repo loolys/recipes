@@ -7,8 +7,8 @@ class LatestRecipes extends React.Component {
     console.log(this.props.data);
     const thumbnails = this.props.data.map(item => {
       let description;
-      if (item.description.length > 15) {
-        description = item.description.slice(0,15) + "...";
+      if (item.description.length > 25) {
+        description = item.description.slice(0,25) + "...";
       } else {
         description = item.description;
       }
@@ -16,7 +16,7 @@ class LatestRecipes extends React.Component {
         <Link to={`/recipe/${item._id}`}>
           <Thumbnail src={item.image} alt="food">
             <h3>{item.title}</h3>
-            <p>{description}</p>
+            <p className="thumbnail-size">{description}</p>
           </Thumbnail>
         </Link>
       </Col>);

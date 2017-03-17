@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Image } from 'react-bootstrap';
-import { Link } from 'react-router';
+import { Link, IndexLink } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/authActions';
@@ -54,9 +54,9 @@ class NavigationBar extends Component {
     return (
       <Navbar className="navbar-no-margin">
         <Navbar.Header>
-          <Link to="/">
+          <IndexLink to="/">
             <Image className="logo-img" src="/recipe-logo.png" />
-          </Link>
+          </IndexLink>
         </Navbar.Header>
         { isAuthenticated ? userLinks : guestLinks }
       </Navbar>

@@ -17,11 +17,24 @@
 }
 
 .white-bg {
-  background-color: white;
+  background-color: #eee;
 }
 
 .center {
     margin: auto;
     margin-top: 20px;
     width: 85%;
+}
+
+.thumbnail-size {
+  min-height: 65px;
+  padding-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.caption {
+  height: 165px;
+  min-height: 155px;
+
 }
