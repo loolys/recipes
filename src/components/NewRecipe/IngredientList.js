@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Row, Col } from 'react-bootstrap';
 import lodashMap from 'lodash/map';
 import classnames from 'classnames';
 import CookingUnits from './data/units';
@@ -23,7 +23,7 @@ class IngredientList extends Component {
           return (<div className={classnames('form-group', { 'has-error': error })} key={index}>
             {index + 1 + '. '}
             <input
-              className="amount-input ingredient-list"
+              className="amount-input ingredient-list ingredient-unit"
               type="number"
               name="amount"
               placeholder="0"
@@ -31,7 +31,7 @@ class IngredientList extends Component {
               onChange={changeIngredient(index)}
             />
             <select
-              className="ingredient-list"
+              className="ingredient-list ingredient-unit"
               name="unit"
               onChange={changeIngredient(index)}
               value={ingredient.unit}
@@ -40,7 +40,7 @@ class IngredientList extends Component {
               {options}
             </select>
             <input
-              className="ingredient-list"
+              className="ingredient-list ingredient-text"
               type="text"
               name="ingredient"
               placeholder="ingredient"
@@ -48,7 +48,7 @@ class IngredientList extends Component {
               onChange={changeIngredient(index)}
             />
             <select
-              className="ingredient-list"
+              className="ingredient-list ingredient-text"
               name="category"
               onChange={changeIngredient(index)}
               value={ingredient.category}

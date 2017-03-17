@@ -9,7 +9,8 @@ class SearchResults extends React.Component {
     super(props);
 
     this.state = {
-      data: []
+      data: [],
+      noResult: ''
     };
   }
 
@@ -29,7 +30,7 @@ class SearchResults extends React.Component {
     this.props.searchRecipes({search})
       .then(
         res => this.setState({ data: res.data.docs }),
-        () => this.setState({ data: [] })
+        () => this.setState({ noResult: 'No results found for your search :(' })
       );
   }
 
@@ -62,7 +63,7 @@ class SearchResults extends React.Component {
       <div>
         { this.state.data.length ?
           <ListGroup>{searchMedia}</ListGroup> :
-          'No results found for your search :('
+          this.state.noResult
         }
       </div>
     );

@@ -46,6 +46,14 @@ textarea {
   margin-right: 10px;
 }
 
+.ingredient-text {
+  width: 25%;
+}
+
+.ingredient-unit {
+  width: 10%;
+}
+
 .align-right {
   float: right;
   margin-top: 30px;
@@ -60,4 +68,8 @@ textarea {
 
 .form-group {
   margin-bottom: 0px;
+}
+
+.col-margin {
+  margin-right: 9px;
 }

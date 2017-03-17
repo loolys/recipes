@@ -12,7 +12,7 @@ class LatestRecipes extends React.Component {
       } else {
         description = item.description;
       }
-      return (<Col key={item._id} xs={6} md={3} sm={3}>
+      return (<Col key={item._id} xs={6} md={3} sm={3} lg={2}>
         <Link to={`/recipe/${item._id}`}>
           <Thumbnail src={item.image} alt="food">
             <h3>{item.title}</h3>

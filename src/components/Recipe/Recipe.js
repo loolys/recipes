@@ -50,7 +50,7 @@ class Recipe extends React.Component {
     return (
       <Grid>
         <Row>
-          <Col mdOffset={2} smOffset={0} xsOffset={0}>
+          <Col mdOffset={1} smOffset={0} xsOffset={0}>
           <RecipeTitleCard
             title={this.state.title}
             description={this.state.description}

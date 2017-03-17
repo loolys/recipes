@@ -26,7 +26,7 @@ class RecipeCookingCard extends React.Component {
       return <div key={step.text}><li>{step.text}</li></div>;
     });
     return (
-      <div className="color-fill col-md-7 col-md-offset-2">
+      <div className="color-fill col-md-9 col-md-offset-1">
         <Col className="recipe-cooking-card vertical-line" md={2}>
           <h2>Ingredients</h2>
           Portions: {this.props.portions}
@@ -35,8 +35,8 @@ class RecipeCookingCard extends React.Component {
           { this.props.auth.user.username ?
             <Button onClick={this.saveRecipe} bsSize="small" bsStyle="primary">Save Recipe</Button> : ''}
         </Col>
-        <Col className="recipe-cooking-card pos-right" md={5}>
-          <h2>Cooking Steps</h2>
+        <Col className="recipe-cooking-card pos-right" md={7}>
+          <h2 className="text-center">Cooking Steps</h2>
           <ol>
             {stepsList}
           </ol>

@@ -38,3 +38,17 @@
   min-height: 155px;
 
 }
+
+.dark-frame {
+  background-color: #5E6161;
+}
+
+.latest-recipes-box {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.title-text {
+  color: #F5F5F5;
+  font-size: 18px;
+}
