@@ -139,6 +139,8 @@ router.delete('/delete/:id', authenticate, (req, res) => {
           res.json({ success: 'Deleted' });
         }
       });
+    } else {
+      res.status(400).json({ error: 'not authorized' });
     }
   });
 });

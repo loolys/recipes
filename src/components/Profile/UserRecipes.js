@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Media, Button, ListGroup, ListGroupItem } from 'react-bootstrap';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { Link } from 'react-router';
+import _ from 'lodash';
 import { fetchUsersRecipes, deleteRecipe } from '../../actions/recipeActions';
 
 class UserRecipes extends React.Component {
@@ -49,7 +50,15 @@ class UserRecipes extends React.Component {
   }
 
   deleteRecipe = (id) => () => {
-    this.props.deleteRecipe(id);
+    this.props.deleteRecipe(id)
+      .then(
+        () => {
+          const filtered = _.filter(this.state.data, (obj) => {
+            return obj._id !== id;
+          });
+          this.setState({ data: filtered, alert: null });
+        }
+      );
   }
 
   hideAlert() {
@@ -66,6 +75,7 @@ class UserRecipes extends React.Component {
   }
 
   render() {
+    console.log(this.state.data);
     const recipeMedia = this.state.data.map(item => {
       return (<div key={item._id}>
           <ListGroupItem>
