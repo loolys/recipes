@@ -41,3 +41,9 @@ export function searchRecipes(search) {
     return axios.post('/api/recipes/search', search);
   };
 }
+
+export function deleteRecipe(id) {
+  return dispatch => {
+    return axios.delete(`/api/recipes/delete/${id}`);
+  };
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Row, Col, Jumbotron } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import UserRecipes from './UserRecipes';
 
 class Profile extends React.Component {

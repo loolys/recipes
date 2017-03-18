@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Row, Col } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import lodashMap from 'lodash/map';
 import classnames from 'classnames';
 import CookingUnits from './data/units';

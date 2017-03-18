@@ -1,6 +1,6 @@
 .recipe-img {
   position: relative;
-  width: 200px;
+  width: auto;
   height: 200px;
   overflow: hidden;
 }

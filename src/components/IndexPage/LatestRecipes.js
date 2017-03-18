@@ -4,7 +4,6 @@ import { Link } from 'react-router';
 
 class LatestRecipes extends React.Component {
   render() {
-    console.log(this.props.data);
     const thumbnails = this.props.data.map(item => {
       let description;
       if (item.description.length > 25) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Media, Button, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Media, Button, ListGroupItem } from 'react-bootstrap';
 import { Link } from 'react-router';
 import underscore from 'underscore';
 import { getSavedRecipes, removeSavedRecipe } from '../../actions/profileActions';
@@ -30,7 +30,6 @@ class SavedRecipes extends React.Component {
   }
 
   removeRecipe(item) {
-    console.log(item);
     this.props.removeSavedRecipe(item).then(
       () => {
         const filtered = this.state.data.filter(thing => {
@@ -60,7 +59,6 @@ class SavedRecipes extends React.Component {
       });
 
       sorted = underscore.sortBy(flatArr, 'category');
-      console.log(sorted);
     }
     const recipeMedia = this.state.data.map(item => {
       return (<div key={item._id}>
@@ -80,11 +78,11 @@ class SavedRecipes extends React.Component {
                 <p><Link to={`/recipe/${item._id}`}>
                   {item.description}</Link>
                   <Button
-                    bsStyle="danger"
+                    bsStyle="warning"
                     className="pull-right"
                     onClick={this.removeRecipe.bind(this, item)}
                   >
-                    Delete
+                    Remove
                   </Button>
                 </p>
               </Media.Body>

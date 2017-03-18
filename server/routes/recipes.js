@@ -123,4 +123,24 @@ router.post('/search', (req, res) => {
   });
 });
 
+router.delete('/delete/:id', authenticate, (req, res) => {
+  const id = req.params.id;
+
+  RecipeModel.findById(id, (err, docs) => {
+    if (err) {
+      res.json({ error: 'Something went wrong' });
+    }
+
+    if (docs.username === req.currentUser.username) {
+      RecipeModel.remove({ _id: id }, (error) => {
+        if (error) {
+          res.status(500).json({ error: 'something went wrong' });
+        } else {
+          res.json({ success: 'Deleted' });
+        }
+      });
+    }
+  });
+});
+
 module.exports = router;

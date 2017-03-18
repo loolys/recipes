@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Row, Col, Well } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import IndexCarousel from './IndexCarousel';
 import LatestRecipes from './LatestRecipes';
 import { getFeatured, getRecipeList } from '../../actions/recipeActions';

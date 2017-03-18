@@ -27,7 +27,6 @@ export default class ShoppingList extends React.Component {
     this.setState({ lineThrough: updateOrder });
   }
   render() {
-    console.log(this.state.lineThrough[0].item);
     const shoppingList = this.props.ingredients.map((item, index) => {
       return (
         <div

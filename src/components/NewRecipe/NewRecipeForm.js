@@ -18,7 +18,6 @@ class NewRecipeForm extends Component {
       title: '',
       titleCharsLeft: 80,
       errors: {},
-      isLoading: false,
       description: '',
       descriptionCharsLeft: 300,
       image: '',
@@ -93,12 +92,12 @@ class NewRecipeForm extends Component {
       if (this.props.id) {
         this.props.editRecipe(this.state).then(
           () => this.context.router.push('/'),
-          err => this.setState({ errors: err.response.data.errors, isLoading: false }),
+          err => this.setState({ errors: err.response.data.errors }),
         );
       } else {
         this.props.createRecipe(this.state).then(
           () => this.context.router.push('/'),
-          err => this.setState({ errors: err.response.data.errors, isLoading: false }),
+          err => this.setState({ errors: err.response.data.errors }),
         );
       }
       
@@ -152,7 +151,7 @@ class NewRecipeForm extends Component {
   }
 
   render() {
-    const { title, errors, isLoading, description, image, time, portions } = this.state;
+    const { title, errors, description, image, time, portions } = this.state;
     let imgSrc;
     if (validUrl.isUri(image)) {
       imgSrc = image;
