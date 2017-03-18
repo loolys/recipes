@@ -38,7 +38,7 @@ class SearchBar extends React.Component {
                   className="search-box dark-font"
                   name='search'
                   type="text" name="search"
-                  placeholder="Search..."
+                  placeholder="Search For Recipes..."
                   value={this.state.search}
                   onChange={this.onChange}
                 />
