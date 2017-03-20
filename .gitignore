@@ -9,6 +9,8 @@
 
 # production
 /build
+server/.gitignore
+server/build
 
 # misc
 .DS_Store

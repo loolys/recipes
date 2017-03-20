@@ -33,8 +33,9 @@ class RecipeCookingCard extends React.Component {
   }
 
   render() {
+    console.log(this.props.ingredients);
     const ingredientsList = this.props.ingredients.map(item => {
-      return <div key={item.ingredient}>{item.amount} {item.ingredient}</div>;
+      return <div key={item.ingredient}>{item.amount + ' ' + item.unit} {item.ingredient}</div>;
     });
 
     const stepsList = this.props.steps.map(step => {

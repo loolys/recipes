@@ -11,9 +11,9 @@ class LatestRecipes extends React.Component {
       } else {
         description = item.description;
       }
-      return (<Col key={item._id} xs={6} md={3} sm={3} lg={2}>
+      return (<Col className="latest-recipe-thumb" key={item._id} xs={6} md={3} sm={3} lg={2}>
         <Link to={`/recipe/${item._id}`}>
-          <Thumbnail className="thumbnail-size" src={item.image} alt="food">
+          <Thumbnail className="thumbnail-size" src={item.image} alt="food" responsive>
             <h4 className="dark-font">{item.title}</h4>
             <p className="thumbnail-size">{description}</p>
           </Thumbnail>

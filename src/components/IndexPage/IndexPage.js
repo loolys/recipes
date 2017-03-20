@@ -31,7 +31,9 @@ class IndexPage extends Component {
             <span className="title-text">Latest Recipes</span>
           </Col>
           <br />
+          <Col>
           <LatestRecipes data={this.state.latestRecipeData} />
+          </Col>
         </Row>
         <Row>
           <Col className="text-center footer-margin">

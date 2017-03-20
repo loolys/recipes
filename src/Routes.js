@@ -22,8 +22,8 @@ const Routes = props => (
       <Route path="/new-recipe" component={requireAuth(NewRecipe)} />
       <Route path="/recipe/:id" component={Recipe} />
       <Route path="/edit/:id" component={NewRecipe} />
-      <Route path="/profile/:user" component={Profile} />
-      <Route path="/profile/saved/:user" component={SavedRecipes} />
+      <Route path="/profile/:user" component={requireAuth(Profile)} />
+      <Route path="/profile/saved/:user" component={requireAuth(SavedRecipes)} />
       <Route path="/search-results" component={SearchResults} />
     </Route>
   </Router>
