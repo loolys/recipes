@@ -26,14 +26,12 @@ class IndexPage extends Component {
         <Row>
           <IndexCarousel images={this.state.carouselData} />
         </Row>
-        <Row className="container white-bg center latest-recipes-box">
+        <Row className="white-bg center latest-recipes-box">
           <Col className="text-center dark-frame">
             <span className="title-text">Latest Recipes</span>
           </Col>
           <br />
-          <Col>
           <LatestRecipes data={this.state.latestRecipeData} />
-          </Col>
         </Row>
         <Row>
           <Col className="text-center footer-margin">

@@ -27,6 +27,12 @@
     width: 85%;
 }
 
+@media screen and (max-width: 650px) {
+  .center {
+    width: 100%;
+  }
+}
+
 .thumbnail-size {
   min-height: 65px;
   padding-bottom: 15px;
